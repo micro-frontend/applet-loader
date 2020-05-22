@@ -2,5 +2,297 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "applet-loader-demo": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "displayBlock": true
+        }
+      },
+      "root": "projects/applet-loader-demo",
+      "sourceRoot": "projects/applet-loader-demo/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/applet-loader-demo",
+            "index": "projects/applet-loader-demo/src/index.html",
+            "main": "projects/applet-loader-demo/src/main.ts",
+            "polyfills": "projects/applet-loader-demo/src/polyfills.ts",
+            "tsConfig": "projects/applet-loader-demo/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/applet-loader-demo/src/favicon.ico",
+              "projects/applet-loader-demo/src/assets"
+            ],
+            "styles": [
+              "projects/applet-loader-demo/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/applet-loader-demo/src/environments/environment.ts",
+                  "with": "projects/applet-loader-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "applet-loader-demo:build",
+            "port": 24200,
+            "open": true,
+            "proxyConfig": "./proxy-config.js"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "applet-loader-demo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "applet-loader-demo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/applet-loader-demo/src/test.ts",
+            "polyfills": "projects/applet-loader-demo/src/polyfills.ts",
+            "tsConfig": "projects/applet-loader-demo/tsconfig.spec.json",
+            "karmaConfig": "projects/applet-loader-demo/karma.conf.js",
+            "assets": [
+              "projects/applet-loader-demo/src/favicon.ico",
+              "projects/applet-loader-demo/src/assets"
+            ],
+            "styles": [
+              "projects/applet-loader-demo/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/applet-loader-demo/tsconfig.app.json",
+              "projects/applet-loader-demo/tsconfig.spec.json",
+              "projects/applet-loader-demo/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/applet-loader-demo/e2e/protractor.conf.js",
+            "devServerTarget": "applet-loader-demo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "applet-loader-demo:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "applet-loader": {
+      "projectType": "library",
+      "root": "projects/applet-loader",
+      "sourceRoot": "projects/applet-loader/src",
+      "prefix": "mf",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/applet-loader/tsconfig.lib.json",
+            "project": "projects/applet-loader/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/applet-loader/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/applet-loader/src/test.ts",
+            "tsConfig": "projects/applet-loader/tsconfig.spec.json",
+            "karmaConfig": "projects/applet-loader/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/applet-loader/tsconfig.lib.json",
+              "projects/applet-loader/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "demo-applet": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/demo-applet",
+      "sourceRoot": "projects/demo-applet/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/demo-applet",
+            "index": "projects/demo-applet/src/index.html",
+            "main": "projects/demo-applet/src/main.ts",
+            "polyfills": "projects/demo-applet/src/polyfills.ts",
+            "tsConfig": "projects/demo-applet/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/demo-applet/src/favicon.ico",
+              "projects/demo-applet/src/assets"
+            ],
+            "styles": [
+              "projects/demo-applet/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/demo-applet/src/environments/environment.ts",
+                  "with": "projects/demo-applet/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "demo-applet:build",
+            "port": 24201
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "demo-applet:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "demo-applet:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/demo-applet/src/test.ts",
+            "polyfills": "projects/demo-applet/src/polyfills.ts",
+            "tsConfig": "projects/demo-applet/tsconfig.spec.json",
+            "karmaConfig": "projects/demo-applet/karma.conf.js",
+            "assets": [
+              "projects/demo-applet/src/favicon.ico",
+              "projects/demo-applet/src/assets"
+            ],
+            "styles": [
+              "projects/demo-applet/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/demo-applet/tsconfig.app.json",
+              "projects/demo-applet/tsconfig.spec.json",
+              "projects/demo-applet/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/demo-applet/e2e/protractor.conf.js",
+            "devServerTarget": "demo-applet:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "demo-applet:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
+  },
+  "defaultProject": "applet-loader-demo"
 }

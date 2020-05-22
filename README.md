@@ -1,4 +1,20 @@
-# BeesSdk
+# 开发指南
+
+## 本项目特有指南
+
+请先运行 npm run start-applet 启动示范 Applet。
+
+然后运行 npm start 启动示范 Loader Demo。
+
+Loader Demo 没有自己的界面，可见的部分是由 Applet Demo 中通过 Angular Element 渲染出来的。
+
+## 注意事项
+
+1. 在开发期间 demo-applet 必须用 `--prod` 参数启动，否则会和 applet-loader-demo 的运行时代码冲突，导致页面不断刷新
+2. demo-applet 不要以 `forRoot()` 方式引入 `@angular/router` 模块，否则可能争抢全局对象 history 的控制权。
+3. demo-applet 中不要用任何形式添加或修改 `window` 对象上的属性，否则多个同类 applet 之间可能会相互冲突。其它全局变量也要慎用。
+
+## Angular 通用指南
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
 

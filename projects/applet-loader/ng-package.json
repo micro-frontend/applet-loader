@@ -1,0 +1,15 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/applet-loader",
+  "whitelistedNonPeerDependencies": [
+    "uuid",
+    "hash.js"
+  ],
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "uuid": "uuid",
+      "hash.js": "hash_js"
+    }
+  }
+}
