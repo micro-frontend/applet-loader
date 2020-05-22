@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppletLoaderModule } from '../../../applet-loader/src/lib/applet-loader.module';
+import { AppletLoaderModule } from '@awesome-fe/applet-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

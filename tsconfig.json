@@ -14,12 +14,7 @@
     "lib": [
       "es2018",
       "dom"
-    ],
-    "paths": {
-      "applet-loader": [
-        "projects/applet-loader"
-      ]
-    }
+    ]
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

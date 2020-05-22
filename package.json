@@ -6,6 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "start-appet": "ng serve demo-applet --prod",
+    "publish": "ng build applet-loader --prod && npm publish dist/applet-loader --access=public",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
