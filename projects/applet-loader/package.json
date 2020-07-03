@@ -1,16 +1,16 @@
 {
   "name": "@awesome-fe/applet-loader",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "main": "src/public-api.ts",
   "dependencies": {
     "uuid": "^8.0.0",
     "hash.js": "^1.0.0"
   },
   "peerDependencies": {
-    "@angular/common": "^8.0.0",
-    "@angular/core": "^8.0.0",
-    "@angular/elements": "^8.0.0",
-    "document-register-element": "^1.0.0",
-    "tslib": "^1.0.0"
+    "@angular/common": ">=8",
+    "@angular/core": ">=8",
+    "@angular/elements": ">=8",
+    "document-register-element": ">=1",
+    "tslib": ">=1"
   }
 }

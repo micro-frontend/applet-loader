@@ -40,7 +40,9 @@ export class AppletLoaderComponent implements OnInit {
   }
 
   private expandMacro(text: string): string {
-    return text.replace(new RegExp(NAME_OF_APPLET_ID, 'g'), `_${sha1(this.url)}_${this.id}`);
+    return text
+      .replace(new RegExp(NAME_OF_APPLET_ID, 'g'), `_${sha1(this.url)}_${this.id}`)
+      .replace(/webpackJsonp/g, `webpackJsonp_${sha1(this.url)}_${this.id}`);
   }
 
   private load(doc: Document, baseUri: string): Observable<string> {
