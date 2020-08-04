@@ -2,7 +2,12 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/app",
-    "types": []
+    "types": [],
+    "paths": {
+      "@awesome-fe/applet-loader": [
+        "../applet-loader/src/public-api.ts"
+      ]
+    }
   },
   "files": [
     "src/main.ts",
