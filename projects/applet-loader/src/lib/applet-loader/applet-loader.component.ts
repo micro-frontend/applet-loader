@@ -29,7 +29,7 @@ export class AppletLoaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get(this.url, { responseType: 'text' })
+      .get(this.url, { responseType: 'text', params: { t: new Date().getTime().toFixed(0) } })
       .pipe(
         map((html) => parse(html)),
         tap(() => this.element.innerHTML = this.expandMacro(`<app-root-${NAME_OF_APPLET_ID}></app-root-${NAME_OF_APPLET_ID}>`)),
