@@ -1,6 +1,6 @@
 {
   "name": "@awesome-fe/applet-loader",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "src/public-api.ts",
   "dependencies": {
     "uuid": "^8.0.0",
