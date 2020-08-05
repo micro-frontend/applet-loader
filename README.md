@@ -8,6 +8,10 @@
 
 Loader Demo 没有自己的界面，可见的部分是由 Applet Demo 中通过 Angular Element 渲染出来的。
 
+## 如何调试 demo-applet
+
+正常加载应用之后，打开 Chrome DevTools 的 Source 页，把 demo-applet 目录拖进这个界面。然后即可直接按 ctrl/cmd-p 并输入 abc.component.ts 找到它了。后续调试过程和正常应用完全相同。
+
 ## 注意事项
 
 1. demo-applet 不要以 `forRoot()` 方式引入 `@angular/router` 模块，否则可能争抢全局对象 history 的控制权。

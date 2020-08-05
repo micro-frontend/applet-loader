@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, OnInit } from '@angular/core';
-import { fromEvent, Observable, of, zip } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { fromEvent, merge, Observable, of, zip } from 'rxjs';
+import { finalize, map, switchMap, tap } from 'rxjs/operators';
 import { parse } from '../utils/html-parser';
 import { nextId } from '../utils/next-id';
 import { sha1 } from '../utils/sha1';
@@ -70,7 +70,10 @@ function join(...paths: string[]): string {
 
 function runScript(content: string): Observable<Event> {
   const scriptElement = document.createElement('script');
-  scriptElement.textContent = content;
+  const url = URL.createObjectURL(new Blob([content], { type: 'application/javascript' }));
+  scriptElement.src = url;
   document.head.appendChild(scriptElement);
-  return fromEvent(scriptElement, 'load');
+  return merge(fromEvent(scriptElement, 'load'), fromEvent(scriptElement, 'error')).pipe(
+    finalize(() => URL.revokeObjectURL(url)),
+  );
 }

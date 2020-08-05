@@ -5,7 +5,7 @@
     "types": [],
     "paths": {
       "@awesome-fe/applet-loader": [
-        "../applet-loader/src/public-api.ts"
+        "projects/applet-loader/src/public-api.ts"
       ]
     }
   },
