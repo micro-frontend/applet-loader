@@ -293,6 +293,5 @@
   },
   "cli": {
     "analytics": false
-  },
-  "defaultProject": "applet-loader-demo"
+  }
 }
