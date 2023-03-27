@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, OnInit } from '@angular/core';
-import { fromEvent, merge, Observable, of, zip } from 'rxjs';
-import { finalize, map, switchMap, tap } from 'rxjs/operators';
-import { parse } from '../utils/html-parser';
-import { nextId } from '../utils/next-id';
-import { sha1 } from '../utils/sha1';
+import {HttpClient} from '@angular/common/http';
+import {ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, OnInit} from '@angular/core';
+import {fromEvent, merge, Observable, of, zip} from 'rxjs';
+import {finalize, map, switchMap, tap} from 'rxjs/operators';
+import {parse} from '../utils/html-parser';
+import {nextId} from '../utils/next-id';
+import {sha1} from '../utils/sha1';
 
 export const NAME_OF_APPLET_ID = '__MF_APPLET_ID__';
 
@@ -29,7 +29,7 @@ export class AppletLoaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get(this.url, { responseType: 'text', params: { t: new Date().getTime().toFixed(0) } })
+      .get(this.url, {responseType: 'text'})
       .pipe(
         map((html) => parse(html)),
         tap(() => this.element.innerHTML = this.expandMacro(`<app-root-${NAME_OF_APPLET_ID}></app-root-${NAME_OF_APPLET_ID}>`)),
@@ -55,7 +55,7 @@ export class AppletLoaderComponent implements OnInit {
     const tasks = scriptElements.map((script) => {
       const src = script.getAttribute('src');
       if (src) {
-        return this.http.get(join(baseUri, src), { responseType: 'text' });
+        return this.http.get(join(baseUri, src), {responseType: 'text'});
       } else {
         return of(script.textContent);
       }
@@ -70,7 +70,7 @@ function join(...paths: string[]): string {
 
 function runScript(content: string): Observable<Event> {
   const scriptElement = document.createElement('script');
-  const url = URL.createObjectURL(new Blob([content], { type: 'application/javascript' }));
+  const url = URL.createObjectURL(new Blob([content], {type: 'application/javascript'}));
   scriptElement.src = url;
   document.head.appendChild(scriptElement);
   return merge(fromEvent(scriptElement, 'load'), fromEvent(scriptElement, 'error')).pipe(

@@ -1,3 +1,7 @@
+<strong>宿主应用中可以直接留一个节点给子应用渲染（自由发挥）：</strong>
 <mf-applet-loader url="/applets/demo"></mf-applet-loader>
+
 <router-outlet></router-outlet>
+
+<strong>宿主应用中也可以通过 Custom Element 的形式使用子应用提供的能力：</strong>
 <div [innerHTML]="dynamicContent"></div>

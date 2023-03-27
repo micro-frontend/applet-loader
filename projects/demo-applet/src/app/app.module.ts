@@ -1,9 +1,9 @@
-import { Injector, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { registerElement } from '../../../applet-loader/src/lib/utils/register-element';
-import { AbcComponent } from './abc/abc.component';
+import {Injector, NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {registerElement} from '../../../applet-loader/src/lib/utils/register-element';
+import {AbcComponent} from './abc/abc.component';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 
 @NgModule({
   declarations: [

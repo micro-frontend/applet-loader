@@ -2,6 +2,7 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
+  "defaultProject": "applet-loader-demo",
   "projects": {
     "applet-loader-demo": {
       "projectType": "application",
@@ -232,6 +233,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "demo-applet:build",
+            "liveReload": false,
             "port": 24201
           },
           "configurations": {
